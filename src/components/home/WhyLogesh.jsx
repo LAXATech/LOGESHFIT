@@ -27,19 +27,38 @@ const WhyLogesh = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Feature
                     icon={ShieldCheck}
-                    title="Proven Authority"
-                    description="With 3+ years of experience and over 100 successful transformations, my methods are backed by real-world results, not just theory."
+                    title="3+ Years Experience"
+                    description="Specialist in coaching busy professionals. I understand your time constraints and lifestyle challenges."
                 />
                 <Feature
                     icon={Clock}
-                    title="Time-Efficient"
-                    description="Designed for busy professionals. Get maximum results with just 1 hour of training per day. No endless cardio sessions."
+                    title="The 1-Hour Method"
+                    description="Get maximum results with just 1 hour of training per day. No endless cardio or time-wasting exercises."
                 />
                 <Feature
                     icon={TrendingUp}
                     title="Sustainable Results"
-                    description="No crash diets or starvation. Learn how to eat the foods you love while still dropping body fat and building muscle."
+                    description="No extreme dieting or starvation. Learn to eat the foods you love while dropping body fat."
                 />
+            </div>
+
+            <div className="mt-16 pt-8 border-t border-gray-800 text-center">
+                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-6">Certified By Leading Organizations</p>
+                <div className="flex flex-wrap justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    {/* Placeholders for certification logos */}
+                    <div className="flex items-center gap-2">
+                        <ShieldCheck size={24} className="text-white" />
+                        <span className="text-white font-bold">NASM Certified</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <ShieldCheck size={24} className="text-white" />
+                        <span className="text-white font-bold">ISSA Specialist</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <ShieldCheck size={24} className="text-white" />
+                        <span className="text-white font-bold">Precision Nutrition</span>
+                    </div>
+                </div>
             </div>
         </Section>
     );

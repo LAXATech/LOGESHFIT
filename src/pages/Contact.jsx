@@ -1,9 +1,58 @@
 import React from 'react';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Check } from 'lucide-react';
 
 const Contact = () => {
+    const [formData, setFormData] = React.useState({
+        name: '',
+        phone: '',
+        email: '',
+        goal: 'Fat Loss',
+        message: ''
+    });
+    const [errors, setErrors] = React.useState({});
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+    const [isSuccess, setIsSuccess] = React.useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        // Clear error when user types
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const validate = () => {
+        const newErrors = {};
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.phone.trim()) newErrors.phone = "Phone is required";
+        if (!formData.email.trim()) newErrors.email = "Email is required";
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid";
+        if (!formData.message.trim()) newErrors.message = "Message is required";
+        return newErrors;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newErrors = validate();
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setIsSubmitting(true);
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setIsSuccess(true);
+            setFormData({ name: '', phone: '', email: '', goal: 'Fat Loss', message: '' });
+            // Reset success message after 5 seconds
+            setTimeout(() => setIsSuccess(false), 5000);
+        }, 1500);
+    };
+
     return (
         <Section background="dark" className="pt-32">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -47,25 +96,70 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="bg-secondary p-8 rounded-sm border border-gray-800">
-                    <form className="space-y-6">
+                <div className="bg-secondary p-8 rounded-sm border border-gray-800 relative">
+                    {isSuccess ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-secondary z-10 p-8 text-center animate-fade-in">
+                            <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4">
+                                <Check size={32} className="text-primary" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                            <p className="text-gray-400">Thanks for reaching out. I'll be in touch shortly.</p>
+                            <button
+                                onClick={() => setIsSuccess(false)}
+                                className="mt-6 text-accent text-sm font-bold hover:underline"
+                            >
+                                Send another message
+                            </button>
+                        </div>
+                    ) : null}
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Name</label>
-                                <input type="text" className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="John Doe" />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className={`w-full bg-primary border rounded-sm px-4 py-3 text-base text-white focus:outline-none focus:border-accent transition-colors ${errors.name ? 'border-red-500' : 'border-gray-700'}`}
+                                    placeholder="John Doe"
+                                />
+                                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
                             <div>
                                 <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Phone</label>
-                                <input type="tel" className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="+91..." />
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className={`w-full bg-primary border rounded-sm px-4 py-3 text-base text-white focus:outline-none focus:border-accent transition-colors ${errors.phone ? 'border-red-500' : 'border-gray-700'}`}
+                                    placeholder="+91..."
+                                />
+                                {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                             </div>
                         </div>
                         <div>
                             <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Email</label>
-                            <input type="email" className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="john@example.com" />
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={`w-full bg-primary border rounded-sm px-4 py-3 text-base text-white focus:outline-none focus:border-accent transition-colors ${errors.email ? 'border-red-500' : 'border-gray-700'}`}
+                                placeholder="john@example.com"
+                            />
+                            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                         </div>
                         <div>
                             <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Goal</label>
-                            <select className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors">
+                            <select
+                                name="goal"
+                                value={formData.goal}
+                                onChange={handleChange}
+                                className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-base text-white focus:outline-none focus:border-accent transition-colors"
+                            >
                                 <option>Fat Loss</option>
                                 <option>Muscle Gain</option>
                                 <option>General Fitness</option>
@@ -74,10 +168,17 @@ const Contact = () => {
                         </div>
                         <div>
                             <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Message</label>
-                            <textarea className="w-full bg-primary border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors h-32" placeholder="Tell me about your current routine..."></textarea>
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                className={`w-full bg-primary border rounded-sm px-4 py-3 text-base text-white focus:outline-none focus:border-accent transition-colors h-32 ${errors.message ? 'border-red-500' : 'border-gray-700'}`}
+                                placeholder="Tell me about your current routine..."
+                            ></textarea>
+                            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                         </div>
-                        <Button type="submit" variant="primary" className="w-full justify-center">
-                            Send Application
+                        <Button type="submit" variant="primary" className="w-full justify-center" disabled={isSubmitting}>
+                            {isSubmitting ? 'Sending...' : 'Send Application'}
                         </Button>
                     </form>
                 </div>

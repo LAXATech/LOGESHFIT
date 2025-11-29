@@ -38,21 +38,17 @@ const FAQItem = ({ question, answer }) => {
 const FAQ = () => {
     const faqs = [
         {
+            question: "Do I need to give up my favorite foods?",
+            answer: "Absolutely not. My approach is based on flexible dieting. We fit your favorite foods into your plan so you can enjoy life while losing fat."
+        },
+        {
             question: "Do I need a gym membership?",
-            answer: "While a gym membership is recommended for the best results, I also offer home workout plans requiring minimal equipment (dumbbells and resistance bands)."
+            answer: "No. I create plans for both gym and home workouts. If you have limited equipment, we can work with that too."
         },
         {
-            question: "I have a busy schedule. Can I still do this?",
-            answer: "Absolutely. My program is specifically designed for busy professionals. Workouts are 45-60 minutes, and nutrition plans are simple to prep and follow."
+            question: "I travel a lot for work. Can I still do this?",
+            answer: "Yes! The program is 100% online and flexible. I'll design workouts you can do in hotel gyms or with bodyweight, and guide you on eating out."
         },
-        {
-            question: "Are there any food restrictions?",
-            answer: "No. I believe in flexible dieting. You'll have a calorie and protein target, but you can choose the foods you enjoy. No banning carbs or sugar."
-        },
-        {
-            question: "How does the online coaching work?",
-            answer: "You'll get access to a training app with your custom plan. We'll have weekly check-ins via WhatsApp/Email to track progress, adjust macros, and ensure you're on track."
-        }
     ];
 
     return (

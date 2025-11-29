@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import Section from '../components/ui/Section';
 import CTA from '../components/home/CTA';
 
@@ -12,7 +13,10 @@ const BlogPost = ({ title, category, image }) => (
             />
         </div>
         <span className="text-accent text-xs font-bold uppercase tracking-wider mb-2 block">{category}</span>
-        <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">{title}</h3>
+        <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors mb-3">{title}</h3>
+        <div className="flex items-center gap-2 text-accent text-sm font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+            Read Article <ArrowRight size={16} />
+        </div>
     </div>
 );
 

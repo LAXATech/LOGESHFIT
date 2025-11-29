@@ -25,11 +25,11 @@ const Hero = () => {
                         <span className="inline-block text-accent font-bold tracking-wider uppercase mb-4">
                             Online Coaching for Busy Professionals
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight mb-6">
-                            LOSE FAT IN <span className="text-accent">1 HOUR/DAY</span> WITHOUT STARVING
+                        <h1 className="text-4xl md:text-6xl font-heading font-bold leading-tight mb-6">
+                            Fat Loss Coaching for <span className="text-accent">Busy Professionals</span> – 1 Hour a Day, No Starving
                         </h1>
                         <p className="text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
-                            Join 500+ professionals who have transformed their physique while running businesses and managing careers. No extreme diets. Just real results.
+                            3+ Years Experience. Real Client Results. Transform your physique without giving up your career or social life.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">

@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from '../components/ui/Section';
+import PageHero from '../components/ui/PageHero';
 import Button from '../components/ui/Button';
 import { Check } from 'lucide-react';
 import CTA from '../components/home/CTA';
@@ -72,15 +73,12 @@ const ProgramsPage = () => {
 
     return (
         <>
-            <Section background="dark" className="pt-32">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6">
-                        CHOOSE YOUR <span className="text-accent">PROGRAM</span>
-                    </h1>
-                    <p className="text-gray-400 text-lg">
-                        Invest in your health and performance. No hidden fees, just results.
-                    </p>
-                </div>
+            <PageHero
+                title="Choose Your Program"
+                subtitle="Invest in your health and performance. No hidden fees, just results."
+                bgImage="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+            />
+            <Section background="dark" className="pt-20">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {programs.map((program, index) => (
                         <PricingCard key={index} {...program} />
